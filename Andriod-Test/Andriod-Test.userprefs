@@ -1,0 +1,73 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player.cs">
+    <Files>
+      <File FileName="Assets\Scripts\Player.cs" Line="62" Column="5" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Player\Player.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Game Mechanic\EndingScoreCamera.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Game Mechanic\EndingWinnerScreen.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Game Mechanic\Hazards.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Game Mechanic\ScoreCamera.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Game Mechanic\Spawn.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Game Mechanic\SpawnPoints.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Game Mechanic\SpawnWeapons.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Game Mechanic\Statistics.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Game Mechanic\Stats.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Interactable\CashSafe.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Interactable\DestructableObjects.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Interactable\FadeOutBroken.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Interactable\SpecialObject.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Interactable\TearableTape.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Interactable\Weapons.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Menu\PlayTypeBehaviour.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Menu\PlayMenuManager.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Menu\PlayerSelectionBehaviour.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Menu\PlayerScreen.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Menu\PlayCharacterAnimations.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Menu\ModeSelectionBehaviour.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Menu\MenuConstants.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Menu\MenuBehaviour.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Menu\MainMenuControl.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Menu\LevelSelectionBehaviour.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Menu\IntroCinematicVideo.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Menu\GUIManager.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Menu\FormatGuiText.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Menu\EndingLevelSelectionBehaviour.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Misc\BreakScreen.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Misc\CashLaunchTest.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Misc\Constants.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Misc\LoadingScreen.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Misc\ManageScreens.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Misc\RandomizeTreeSizes.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Misc\Utilities.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Misc\TimeText.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Misc\VersionOverlay.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Player\Multiplayer.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Player\Movement.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Player\Jetpack.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Player\HUD.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Player\HealthDisplay.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Player\GamePad.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Player\Ragdoll.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\Player\ThrowObjects.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\TutorialScripts\Button.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\TutorialScripts\CameraTiming.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\TutorialScripts\DummyDisplay.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\TutorialScripts\DummyScript.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\TutorialScripts\LaserDoors.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\TutorialScripts\Room1.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\TutorialScripts\Room2.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\TutorialScripts\Room3.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\TutorialScripts\Room4.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\TutorialScripts\Room5.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\TutorialScripts\RoomBase.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\TutorialScripts\RoomManager.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\TutorialScripts\Rotation.cs" Line="1" Column="1" />
+      <File FileName="..\..\New folder (4)\trunk\Assets\Scripts\Production\TutorialScripts\ScreenText.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
