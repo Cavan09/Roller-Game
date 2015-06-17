@@ -7,17 +7,23 @@ public class CameraScript : MonoBehaviour {
 	public float CameraMoveSpeed;
 	public float MoveThreshHold;
 	Transform PlayerTransform;
+	Vector2 ScreenSize;
 	public float XDiff;
 	public float YDiff;
 	// Use this for initialization
 	void Start () 
 	{
 		PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+		
+		ScreenSize = new Vector2(Screen.width, Screen.height);
+		
+		ScreenSize = ScreenSize.normalized * MoveThreshHold;
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	void LateUpdate () 
 	{
+		
 		if(PlayerTransform != null)
 		{
 			XDiff = PlayerTransform.position.x - transform.position.x;
@@ -25,14 +31,14 @@ public class CameraScript : MonoBehaviour {
 			Vector3 movePos = new Vector3(PlayerTransform.position.x, PlayerTransform.position.y, -10);
 			
 			
-			if(XDiff < -MoveThreshHold || XDiff > MoveThreshHold)
+			if(XDiff < -ScreenSize.x *2 || XDiff > ScreenSize.x /2)
 			{
-				transform.position = Vector3.Lerp(transform.position,movePos,CameraMoveSpeed * Time.deltaTime);
+				transform.position = Vector3.Slerp(transform.position,movePos,CameraMoveSpeed * Time.deltaTime);
 			}
 			
-			if(YDiff < -MoveThreshHold || YDiff > MoveThreshHold)
+			if(YDiff < -ScreenSize.y || YDiff > ScreenSize.y)
 			{
-				transform.position = Vector3.Lerp(transform.position,movePos,CameraMoveSpeed * Time.deltaTime);
+				transform.position = Vector3.Slerp(transform.position,movePos,CameraMoveSpeed * Time.deltaTime);
 			}
 			
 		}

@@ -12,8 +12,8 @@ public class Player : MonoBehaviour
 	Quaternion restartRot;
 	float MaxAngularVelocity;
 	float Score;
-	Text DebugInfo;
-	float DisplacmentConstant = 0.0002f;
+	float DisplacmentConstant = 0.0007f;
+	public ScoreTracker scoreTracker;
 	
 	// Use this for initialization
 	void Start () 
@@ -22,26 +22,24 @@ public class Player : MonoBehaviour
 		lastPos = Vector3.zero;
 		restartPos = transform.position;
 		restartRot = transform.rotation;
-		DebugInfo = GameObject.Find("Debug").GetComponent<Text>();
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		UpdateTouchControls();
 		if(Input.GetKeyDown(KeyCode.R))
 		{
 			Respawn();
 		}
 		
+		transform.position = new Vector3(transform.position.x, transform.position.y, -3.7f);
+		
 		Score = transform.position.x - restartPos.x > Score ?  transform.position.x - restartPos.x : Score;
 	}
 	
-	void Respawn()
+	void FixedUpdate()
 	{
-		transform.position = restartPos;
-		transform.rotation = restartRot;
-		body.velocity = Vector3.zero;
+		UpdateTouchControls();
 	}
 	
 	void UpdateTouchControls () 
@@ -52,7 +50,7 @@ public class Player : MonoBehaviour
 			
 			if(Input.GetMouseButton(0))
 			{
-				body.AddForce(transform.forward, ForceMode.VelocityChange);
+				//body.AddForce(transform.forward, ForceMode.VelocityChange);
 			}
 			
 			break;
@@ -69,19 +67,11 @@ public class Player : MonoBehaviour
 			if(lastPos != Vector3.zero)
 			{
 				float deltaDist = DisplacmentConstant * Mathf.Abs( CurrentRoller.speed);
-//				Debug.DrawLine(CurrentRoller.transform.position,currentPos, Color.red);
-//				Debug.DrawLine(CurrentRoller.transform.position,lastPos, Color.red);
-//				Debug.DrawLine(lastPos, currentPos, Color.green);
-				float angularDistplacement = deltaDist / CurrentRoller.GetComponent<CapsuleCollider>().radius;
+				float angularDistplacement = deltaDist / CurrentRoller.GetRadius;
 				float angularVelocity = angularDistplacement / Time.fixedDeltaTime;
-
 				MaxAngularVelocity = angularVelocity > MaxAngularVelocity ? angularVelocity : MaxAngularVelocity;
 				
-				
-				DebugInfo.text = "DeltaDist: " + deltaDist
-				+ "\nAngularDisplacement: " + angularDistplacement +
-				"\nAngularVelocity: " + angularVelocity
-				+ "\n MaxAngularVelocity: " + MaxAngularVelocity; 
+				Debug.Log("angularVel: " + angularVelocity);
 			}
 
 			if(Input.GetMouseButton(0))
@@ -98,6 +88,7 @@ public class Player : MonoBehaviour
 			break;
 			
 			case PlayerStates.InAir:
+
 			transform.parent = null;
 			body.useGravity = !body.useGravity ? true : true; 
 			
@@ -105,16 +96,33 @@ public class Player : MonoBehaviour
 		}
 	}
 	
+	public void Respawn()
+	{
+		transform.position = restartPos;
+		transform.rotation = restartRot;
+		body.velocity = Vector3.zero;
+		if(Score > scoreTracker.HighScore)
+		{
+			scoreTracker.HighScore = Score;
+		}
+		Score = 0;
+		
+		scoreTracker.EnableButtons(false);
+		
+	}
+	
 	void OnCollisionEnter(Collision other)
 	{
 		if(other.gameObject.tag == "Ground")
 		{
+			//RemoveDoll();
 			CurrentState = PlayerStates.Grounded;
 			transform.rotation = restartRot;
 		}
 		
 		else if(other.gameObject.tag == "Roller")
 		{
+			//RemoveDoll();
 			lastPos = Vector3.zero;
 			CurrentRoller = other.gameObject.GetComponent<Roller>();
 			body.velocity = Vector3.zero;
@@ -124,14 +132,19 @@ public class Player : MonoBehaviour
 		}
 		else if(other.gameObject.tag == "DeathBox")
 		{
-			Respawn();
+			scoreTracker.EnableButtons(true);
 		}
 	}
 	
 	void OnCollisionExit(Collision other)
 	{
 		CurrentState = PlayerStates.InAir;
-		
+	}
+
+	
+	void RemoveDoll()
+	{
+		GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
 	}
 	
 	public enum PlayerStates

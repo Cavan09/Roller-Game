@@ -38,7 +38,7 @@ public class MovingRoller : Roller {
 			
 				if(OriginalPos == transform.position)
 				{
-				TargetPos = new Vector3(OriginalPos.x , OriginalPos.y + Random.Range(-2,2), OriginalPos.z);
+					TargetPos = new Vector3(OriginalPos.x , OriginalPos.y + Random.Range(-2,2), OriginalPos.z);
 				}
 				else
 				{
