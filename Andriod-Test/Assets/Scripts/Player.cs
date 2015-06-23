@@ -46,51 +46,42 @@ public class Player : MonoBehaviour
 	{
 		switch(CurrentState)
 		{
-			case PlayerStates.Grounded:
-			
-			if(Input.GetMouseButton(0))
-			{
-				//body.AddForce(transform.forward, ForceMode.VelocityChange);
-			}
-			
-			break;
-			
 			case PlayerStates.Grabbing:
-			
-			Vector3 currentPos = Vector3.zero;
-			
-			currentPos = transform.position;
-			
-			Vector3 start = CurrentRoller.transform.position - lastPos ;
-			Vector3 end =  CurrentRoller.transform.position - currentPos;
-			
-			if(lastPos != Vector3.zero)
 			{
-				float deltaDist = DisplacmentConstant * Mathf.Abs( CurrentRoller.speed);
-				float angularDistplacement = deltaDist / CurrentRoller.GetRadius;
-				float angularVelocity = angularDistplacement / Time.fixedDeltaTime;
-				MaxAngularVelocity = angularVelocity > MaxAngularVelocity ? angularVelocity : MaxAngularVelocity;
+				Vector3 currentPos = Vector3.zero;
 				
-				Debug.Log("angularVel: " + angularVelocity);
+				currentPos = transform.position;
+				
+				Vector3 start = CurrentRoller.transform.position - lastPos ;
+				Vector3 end =  CurrentRoller.transform.position - currentPos;
+				
+				if(lastPos != Vector3.zero)
+				{
+					float deltaDist = DisplacmentConstant * Mathf.Abs( CurrentRoller.speed);
+					float angularDistplacement = deltaDist / CurrentRoller.GetRadius;
+					float angularVelocity = angularDistplacement / Time.fixedDeltaTime;
+					MaxAngularVelocity = angularVelocity > MaxAngularVelocity ? angularVelocity : MaxAngularVelocity;
+				}
+	
+				if(Input.GetMouseButton(0))
+				{
+					body.velocity = (currentPos - lastPos).normalized * MaxAngularVelocity;
+					transform.parent = null;
+					body.useGravity = true;
+					MaxAngularVelocity = 0;
+					CurrentState = PlayerStates.InAir;
+				}
+				
+				lastPos = currentPos;
 			}
-
-			if(Input.GetMouseButton(0))
-			{
-				body.velocity = (currentPos - lastPos).normalized * MaxAngularVelocity;
-				transform.parent = null;
-				body.useGravity = true;
-				MaxAngularVelocity = 0;
-				CurrentState = PlayerStates.InAir;
-			}
-			
-			lastPos = currentPos;
 			
 			break;
 			
 			case PlayerStates.InAir:
-
-			transform.parent = null;
-			body.useGravity = !body.useGravity ? true : true; 
+			{
+				transform.parent = null;
+				body.useGravity = !body.useGravity ? true : true; 
+			}
 			
 			break;
 		}
@@ -101,28 +92,20 @@ public class Player : MonoBehaviour
 		transform.position = restartPos;
 		transform.rotation = restartRot;
 		body.velocity = Vector3.zero;
+		
 		if(Score > scoreTracker.HighScore)
 		{
 			scoreTracker.HighScore = Score;
 		}
+		
 		Score = 0;
-		
 		scoreTracker.EnableButtons(false);
-		
 	}
 	
 	void OnCollisionEnter(Collision other)
 	{
-		if(other.gameObject.tag == "Ground")
+		if(other.gameObject.tag == "Roller")
 		{
-			//RemoveDoll();
-			CurrentState = PlayerStates.Grounded;
-			transform.rotation = restartRot;
-		}
-		
-		else if(other.gameObject.tag == "Roller")
-		{
-			//RemoveDoll();
 			lastPos = Vector3.zero;
 			CurrentRoller = other.gameObject.GetComponent<Roller>();
 			body.velocity = Vector3.zero;
@@ -132,7 +115,7 @@ public class Player : MonoBehaviour
 		}
 		else if(other.gameObject.tag == "DeathBox")
 		{
-			scoreTracker.EnableButtons(true);
+			scoreTracker.CheckHighScore(Score);
 		}
 	}
 	
@@ -149,12 +132,16 @@ public class Player : MonoBehaviour
 	
 	public enum PlayerStates
 	{
-		Grounded,InAir,Grabbing
+		InAir,Grabbing
 	}
-
-	public float getScore {
-		get {
-			return Score;
-		}
+	
+	public Roller GetRoller 
+	{
+		get {return CurrentRoller;}
+	}
+	
+	public float getScore 
+	{
+		get {return Score;}
 	}
 }

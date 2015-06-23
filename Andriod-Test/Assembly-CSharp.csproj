@@ -49,6 +49,7 @@
      <Compile Include="Assets\FollowPlayer.cs" />
      <Compile Include="Assets\ForcePosition.cs" />
      <Compile Include="Assets\Hands.cs" />
+     <Compile Include="Assets\HighScoreList.cs" />
      <Compile Include="Assets\JMO Assets\MatCap Shaders\Demo\Assets\MC_AutoRotate.cs" />
      <Compile Include="Assets\JMO Assets\MatCap Shaders\Demo\Assets\MC_SwitchTexture.cs" />
      <Compile Include="Assets\MainMenu.cs" />
@@ -60,6 +61,7 @@
      <Compile Include="Assets\Scripts\Roller.cs" />
      <Compile Include="Assets\Scripts\ScoreTracker.cs" />
      <Compile Include="Assets\TestGrab.cs" />
+     <Compile Include="Assets\Utils.cs" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />

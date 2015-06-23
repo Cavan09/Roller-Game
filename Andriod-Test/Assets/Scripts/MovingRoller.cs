@@ -1,26 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MovingRoller : Roller {
+public class MovingRoller : MonoBehaviour {
 
 	Vector3 OriginalPos;
 	Vector3 TargetPos;
-	
 	MoveStates CurrentState;
+	Vector3 MovePos;
+	public bool MoveX;
+	public float RangeX = 2;
+	public bool MoveY;
+	public float RangeY = 2;
 	
-	public override void Start()
+	public void Start()
 	{
-		base.Start();
 		OriginalPos = transform.position;
 		TargetPos = OriginalPos;
 		CurrentState = MoveStates.Move;
+		MovePos = Vector3.zero;
 	}
 	
 	// Update is called once per frame
-	public override void Update () 
+	public void Update () 
 	{
-		base.Update();
-		
 		switch(CurrentState)
 		{
 			case MoveStates.Move:
@@ -36,9 +38,18 @@ public class MovingRoller : Roller {
 			
 			case MoveStates.ChangeTarget:
 			
+				if(MoveX)
+				{
+					MovePos.x = Random.Range(RangeX,-RangeX);
+				}
+				if(MoveY)
+				{
+					MovePos.y = Random.Range(RangeY,-RangeY);
+				}
+				
 				if(OriginalPos == transform.position)
 				{
-					TargetPos = new Vector3(OriginalPos.x , OriginalPos.y + Random.Range(-2,2), OriginalPos.z);
+					TargetPos = OriginalPos + MovePos;;
 				}
 				else
 				{
@@ -50,6 +61,15 @@ public class MovingRoller : Roller {
 			break;
 		}
 		
+	}
+	
+	void OnTriggerEnter(Collider other)
+	{
+		if(other.tag == tag)
+		{
+			Debug.Log("Hit Roller");
+			TargetPos = OriginalPos;
+		}
 	}
 	
 	enum MoveStates

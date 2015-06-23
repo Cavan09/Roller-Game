@@ -18,7 +18,7 @@ public class ScoreTracker : MonoBehaviour
 	{
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 		ScoreBoard = GetComponent<Canvas>();
-		//Load ();
+		_HighScore = Utils.ReturnTopScore();
 	}
 	
 	// Update is called once per frame
@@ -28,12 +28,12 @@ public class ScoreTracker : MonoBehaviour
 		{
 			ScoreOutput.text = "Score: " + Mathf.Round(player.getScore * 100);
 		}
+		
 		HighScoreOutput.text = "HighScore: " + Mathf.Round(HighScore * 100);
 		
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
-			//Save();
-			Application.Quit(); 
+			Quit(); 
 		}
 	}
 	
@@ -58,43 +58,26 @@ public class ScoreTracker : MonoBehaviour
 		}
 	}
 	
-	public void Save()
+	public void CheckHighScore(float score)
 	{
-		BinaryFormatter formatter = new BinaryFormatter();
-		FileStream file = File.Create(Application.persistentDataPath + "/SaveFile.dat");
-		
-		HighScores playerScores = new HighScores();
-		playerScores.HighScore = _HighScore;
-		
-		formatter.Serialize(file, playerScores);
-		file.Close();
-	}
-	
-	public void Load()
-	{
-		if(File.Exists(Application.persistentDataPath + "/SaveFile.dat"))
+		if(Utils.CheckForNewScore(score))
 		{
-			BinaryFormatter formatter = new BinaryFormatter();
-			FileStream file = File.Open(Application.persistentDataPath + "/SaveFile.dat",FileMode.Open);
-			HighScores playerScores = (HighScores)formatter.Deserialize(file);
-			file.Close();
-			
-			_HighScore = playerScores.HighScore;
+		
+			//Display New HighScore for player
+			//Have a button press show the buttons for retry, menu, and quit
+			Debug.Log("True");
+			Utils.Save();
 		}
+
+		EnableButtons(true);
+		
 	}
 
-	public float HighScore {
-		get {
-			return _HighScore;
-		}
-		set {
-			_HighScore = value;
-		}
+	public float HighScore 
+	{
+		get {return _HighScore;}
+		set {_HighScore = value;}
 	}
 }
 
-[Serializable]
-class HighScores
-{
-	public float HighScore;
-}
+

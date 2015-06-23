@@ -3,44 +3,57 @@ using System.Collections;
 
 public class CameraScript : MonoBehaviour {
 
-
 	public float CameraMoveSpeed;
-	public float MoveThreshHold;
-	Transform PlayerTransform;
-	Vector2 ScreenSize;
-	public float XDiff;
-	public float YDiff;
+	Player PlayerTransform;
+	CameraStates _CurrentState;
 	// Use this for initialization
 	void Start () 
 	{
-		PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-		
-		ScreenSize = new Vector2(Screen.width, Screen.height);
-		
-		ScreenSize = ScreenSize.normalized * MoveThreshHold;
+		PlayerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 	}
 	
 	// Update is called once per frame
 	void LateUpdate () 
 	{
-		
-		if(PlayerTransform != null)
+		switch(PlayerTransform.CurrentState)
 		{
-			XDiff = PlayerTransform.position.x - transform.position.x;
-			YDiff = PlayerTransform.position.y - transform.position.y;
-			Vector3 movePos = new Vector3(PlayerTransform.position.x, PlayerTransform.position.y, -10);
+			case Player.PlayerStates.Grabbing:
+				_CurrentState = CameraStates.FollowRoller;
+			break;
 			
-			
-			if(XDiff < -ScreenSize.x *2 || XDiff > ScreenSize.x /2)
-			{
-				transform.position = Vector3.Slerp(transform.position,movePos,CameraMoveSpeed * Time.deltaTime);
-			}
-			
-			if(YDiff < -ScreenSize.y || YDiff > ScreenSize.y)
-			{
-				transform.position = Vector3.Slerp(transform.position,movePos,CameraMoveSpeed * Time.deltaTime);
-			}
-			
+			case Player.PlayerStates.InAir:
+				_CurrentState = CameraStates.FollowPlayer;
+			break;
 		}
+		
+		UpdateCamState(_CurrentState);
+	}
+	
+	void UpdateCamState(CameraStates state)
+	{
+		switch(state)
+		{
+			case CameraStates.FollowPlayer:
+			{
+				if(PlayerTransform != null)
+				{
+					Vector3 movePos = new Vector3(PlayerTransform.transform.position.x, PlayerTransform.transform.position.y, -10);
+					transform.position = Vector3.Slerp(transform.position,movePos,CameraMoveSpeed * Time.deltaTime);
+				}
+			}
+			break;
+				
+			case CameraStates.FollowRoller:
+			{
+				Vector3 movePos = new Vector3(PlayerTransform.GetRoller.transform.position.x, PlayerTransform.GetRoller.transform.transform.position.y, -10);
+				transform.position = Vector3.Slerp(transform.position,movePos,CameraMoveSpeed * Time.deltaTime);
+			}
+			break;
+		}
+	}
+	
+	enum CameraStates
+	{
+		FollowPlayer, FollowRoller
 	}
 }
